@@ -12,13 +12,13 @@ public class TextBoxTests {
 //        Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
 //        Configuration.pageLoadTimeout = 60000; // Увеличиваем таймаут
-//        Configuration.pageLoadStrategy = "eager"; // Пробуем стратегию загрузки
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.baseUrl = "https://demoqa.com";
     }
 
     @Test
     void fillFormTest() {
-//        open("https://google.com");
-        open("https://demoqa.com/text-box");
+        open("/text-box");
         $("#userName").setValue("Alex").pressEnter();
         $("#userEmail").setValue("2@mail.ru").pressEnter();
         $("#currentAddress").setValue("Some street 1").pressEnter();
@@ -26,6 +26,17 @@ public class TextBoxTests {
 //        $("#submit").scrollIntoView(true).click();
         $("#submit").click();
 
-        $("#name").shouldHave(text("Name:Alex"));
+        $("#output #name").shouldHave(text("Name:Alex"));
+        $("#output #email").shouldHave(text("Email:2@mail.ru"));
+        $("#output #currentAddress").shouldHave(text("Current Address :Some street 1"));
+        $("#output #permanentAddress").shouldHave(text("Permananet Address :Another street 1"));
+
+//        Name:Alex
+//
+//        Email:2@mail.ru
+//
+//        Current Address :Some street 1
+//
+//        Permananet Address :Another street 1
     }
 }
