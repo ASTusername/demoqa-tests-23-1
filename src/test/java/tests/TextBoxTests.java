@@ -1,11 +1,19 @@
 package tests;
 
-import org.junit.jupiter.api.Test;
+import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTests {
+    @BeforeAll
+    static void setup() {
+//        Configuration.browser = "chrome";
+        Configuration.browserSize = "1920x1080";
+//        Configuration.pageLoadTimeout = 60000; // Увеличиваем таймаут
+//        Configuration.pageLoadStrategy = "eager"; // Пробуем стратегию загрузки
+    }
 
     @Test
     void fillFormTest() {
@@ -15,8 +23,9 @@ public class TextBoxTests {
         $("#userEmail").setValue("2@mail.ru").pressEnter();
         $("#currentAddress").setValue("Some street 1").pressEnter();
         $("#permanentAddress").setValue("Another street 1").pressEnter();
+//        $("#submit").scrollIntoView(true).click();
         $("#submit").click();
 
-        $("[id=search]").shouldHave(text("Some text"));
+        $("#name").shouldHave(text("Name:Alex"));
     }
 }
