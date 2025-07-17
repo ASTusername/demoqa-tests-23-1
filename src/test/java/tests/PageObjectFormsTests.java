@@ -7,6 +7,7 @@ import static tests.TestData.*;
 
 public class PageObjectFormsTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
+//    TestData testData = new TestData();
 
     @Test
     void studentRegistrationFormTest() {
