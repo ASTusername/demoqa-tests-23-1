@@ -3,14 +3,16 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
+import static tests.TestData.*;
+
 public class PageObjectFormsTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     void studentRegistrationFormTest() {
         registrationPage.openPage()
-                .setFirstName("Alex")
-                .setLastName("Ivanov")
+                .setFirstName(firstName)
+                .setLastName(lastName)
                 .setEmail("2@mail.ru")
                 .setGender("Male")
                 .setUserNumber("8903123456")
@@ -25,7 +27,7 @@ public class PageObjectFormsTests extends TestBase {
                 .setCity("Delhi")
                 .clickButtonSubmit();
         registrationPage.checkResultTableAppear()
-                .checkResult("Student Name", "Alex Ivanov")
+                .checkResult("Student Name", firstName + " " + lastName)
                 .checkResult("Gender", "Male");
     }
 }
